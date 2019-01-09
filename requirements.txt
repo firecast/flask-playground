@@ -4,10 +4,43 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+appnope==0.1.0            # via ipython
+backcall==0.1.0           # via ipython
 click==7.0                # via flask
+decorator==4.3.0          # via ipython, traitlets
+defusedxml==0.5.0         # via odfpy
+docopt==0.6.2             # via records
+et-xmlfile==1.0.1         # via openpyxl
+flask-sqlalchemy==2.3.2
 flask==1.0.2
 gunicorn==19.9.0
+ipython-genutils==0.2.0   # via traitlets
+ipython==7.2.0
 itsdangerous==1.1.0       # via flask
+jdcal==1.4                # via openpyxl
+jedi==0.13.2              # via ipython
 jinja2==2.10              # via flask
 markupsafe==1.0           # via jinja2
+numpy==1.15.4             # via pandas
+odfpy==1.4.0              # via tablib
+openpyxl==2.5.12          # via tablib
+pandas==0.23.4
+parso==0.3.1              # via jedi
+pexpect==4.6.0            # via ipython
+pickleshare==0.7.5        # via ipython
+prompt-toolkit==2.0.7     # via ipython
+ptyprocess==0.6.0         # via pexpect
+pygments==2.3.1           # via ipython
+python-dateutil==2.7.5    # via pandas
+pytz==2018.9              # via pandas
+pyyaml==3.13              # via tablib
+records==0.5.2
+six==1.12.0               # via prompt-toolkit, python-dateutil, traitlets
+sqlalchemy==1.2.15        # via flask-sqlalchemy, records
+tablib==0.12.1            # via records
+traitlets==4.3.2          # via ipython
+unicodecsv==0.14.1        # via tablib
+wcwidth==0.1.7            # via prompt-toolkit
 werkzeug==0.14.1          # via flask
+xlrd==1.2.0               # via tablib
+xlwt==1.3.0               # via tablib
