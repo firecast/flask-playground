@@ -16,6 +16,7 @@ app = flask.Flask(__name__)
 
 DATABASE_URL = 'sqlite:////' + str(pathlib.Path(__file__).parent / 'test.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # SQLAlchemy wrapper around the database connection
 db = SQLAlchemy(app)
