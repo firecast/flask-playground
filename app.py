@@ -55,8 +55,13 @@ def index():
     """
     # dict of GET arguments. We currently don't use it anywhere
     args = dict(flask.request.args)
-    page = int(args.get('page', 1))
-    completed_date_epoch = int(args.get('completed_date', datetime.datetime.utcnow().timestamp()))
+    try:
+        page = int(args.get('page', 1))
+        completed_date_epoch = int(args.get('completed_date', datetime.datetime.utcnow().timestamp()))
+    except ValueError:
+        page = 1
+        completed_date_epoch = datetime.datetime.utcnow().timestamp()
+    
     completed_date = datetime.datetime.fromtimestamp(completed_date_epoch)
 
     # get the set of tasks
