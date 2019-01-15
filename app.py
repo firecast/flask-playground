@@ -55,10 +55,14 @@ def index():
     """
     # dict of GET arguments. We currently don't use it anywhere
     args = dict(flask.request.args)
+    page = int(args.get('page', 1))
+    completed_date_epoch = int(args.get('completed_date', datetime.datetime.utcnow().timestamp()))
+    completed_date = datetime.datetime.fromtimestamp(completed_date_epoch)
 
     # get the set of tasks
-    tasks = Completed.query.filter_by(user_id=get_uid()).order_by(
-        Completed.completed_date.desc()).limit(3)
+    tasks = Completed.query.filter_by(user_id=get_uid()).filter(
+        Completed.completed_date<=completed_date).order_by(
+            Completed.completed_date.desc()).paginate(page, 3, False)
 
     # equal variant for raw SQL
     # tasks = rec.query(f'''
@@ -67,10 +71,10 @@ def index():
     # ''')
 
     # next URL
-    query_string = {'foo': 'bar'}
+    query_string = {'page': page+1, 'completed_date': completed_date_epoch}
     next_url = f'/?{urllib.parse.urlencode(query_string)}'
 
-    return flask.render_template('tasks.html', tasks=tasks, next_url=next_url)
+    return flask.render_template('tasks.html', tasks=tasks.items, next_url=next_url)
 
 
 @app.route('/init')
